@@ -1,0 +1,10 @@
+total 84
+-rwxrwxr-x 1 lucas_costa_702 lucas_costa_702 16104 Apr  8 13:30 alt_flux
+-rw-r--r-- 1 lucas_costa_702 lucas_costa_702   659 Apr 10 12:05 alt_flux.c
+-rwxrwxr-x 1 lucas_costa_702 lucas_costa_702 16224 Apr 10 12:30 exec
+-rw-r--r-- 1 lucas_costa_702 lucas_costa_702   684 Apr 10 12:33 exec.c
+-rwxrwxr-x 1 lucas_costa_702 lucas_costa_702 16352 Apr 10 13:04 exec_saida
+-rw-r--r-- 1 lucas_costa_702 lucas_costa_702   826 Apr 10 13:02 exec_saida.c
+-rwxrwxr-x 1 lucas_costa_702 lucas_costa_702 16088 Apr 10 12:59 red_saida
+-rw-rw-r-- 1 lucas_costa_702 lucas_costa_702   230 Apr 10 12:58 red_saida.c
+-rw-rw-r-- 1 lucas_costa_702 lucas_costa_702    13 Apr 10 12:59 saida.txt

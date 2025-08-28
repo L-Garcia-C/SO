@@ -1,0 +1,46 @@
+Usou-se nproc para ver quantas unidades de processamentos estão disponíveis. Resposta: 4
+
+Criou-se 4 processos infinitos usando o terminal: "  while :; do :; done& "
+
+Executa um top para vizualização dos processos:
+PID   USER     PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+3949 lucas_c+  10 -10    8792   3400   1536 R  96.3   0.0   6:05.57 bash
+3946 lucas_c+  10 -10    8792   3400   1536 R  95.7   0.0   6:09.07 bash
+3952 lucas_c+  10 -10    8792   3400   1536 R  95.7   0.0   6:03.57 bash
+3955 lucas_c+  10 -10    8792   3400   1536 R  95.3   0.0   6:02.39 bash
+
+Analizando a %CPU e o Time+ é possível notar a igualdade entre os processos(obs.: uso não chega a ser 100% da CPU por existir outros processos rodando por traz).
+
+Ao cria 5 processos infinitos da mesma forma como antes, temos:
+
+PID   USER     PR  NI    VIRT    RES    SHR S  %CPU  %MEM    TIME+ COMMAND
+7129 lucas_c+  10 -10    8792   3264   1408 R  91.7   0.0   2:24.64 bash
+7126 lucas_c+  10 -10    8792   3264   1408 R  88.4   0.0   2:23.58 bash
+7120 lucas_c+  10 -10    8792   3256   1408 R  77.4   0.0   2:24.99 bash
+7123 lucas_c+  10 -10    8792   3264   1408 R  66.4   0.0   2:25.79 bash
+7132 lucas_c+  10 -10    8792   3264   1408 R  59.1   0.0   2:24.62 bash
+
+Aparenta ficar desigual, mas as porcentagens ficam constantemente trocando, então todos ficam flutuando entorno de 60% até 95% trocando suas posições relativas.
+
+
+Ao trocarmos a prioridade dos processos(nice) temos:
+
+PID   USER     PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+7132 lucas_c+  10 -10    8792   3264   1408 R  92.3   0.0  10:09.47 bash
+7129 lucas_c+  12  -8    8792   3264   1408 R  87.0   0.0   9:23.45 bash
+7126 lucas_c+  12  -8    8792   3264   1408 R  75.7   0.0   9:12.18 bash
+7123 lucas_c+  12  -8    8792   3264   1408 R  67.3   0.0   9:23.03 bash
+7120 lucas_c+  12  -8    8792   3256   1408 R  62.7   0.0   9:01.87 bash
+ 
+O processo com maior prioridade fica constantemente com um maior uso de %CPU e maior tempo de CPU(TIME+) 
+
+Ao criar um processo que espera uma entrada: "  while true; do read var; done "
+
+PID     USER    PR  NI    VIRT    RES    SHR S  %CPU  %MEM    TIME+  COMMAND
+11613 lucas_c+  10 -10    8792   3268   1408 R  96.0   0.0   7:05.31 bash
+11610 lucas_c+  10 -10    8792   3268   1408 R  95.7   0.0   7:05.92 bash
+11607 lucas_c+  10 -10    8792   3264   1408 R  95.4   0.0   7:05.85 bash
+11604 lucas_c+  10 -10    8792   3256   1408 R  94.7   0.0   7:06.41 bash
+5667  lucas_c+  10 -10    9308   6144   3840 S   0.0   0.0   0:00.05 bash
+
+O processo que espera entrada fica em S(stop) e não consome %CPU e TIME+ enquanto não é "estimulado", não importando a mudança de sua prioridade. 
